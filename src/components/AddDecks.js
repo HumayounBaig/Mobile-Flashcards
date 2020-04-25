@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 
-export default function HomeScreen() {
+export default function AddDecks() {
   return (
       <View style={styles.container}>
           <SafeAreaView>
-              <Text>HomeScreen</Text>
+              <Text>AddDecks</Text>
 
           </SafeAreaView>
       </View>
