@@ -37,11 +37,11 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Decks') {
+            if (route.name === 'decks') {
               iconName = focused
                 ? 'md-folder'
                 : 'md-folder-open';
-            } else if (route.name === 'Add Decks') {
+            } else if (route.name === 'addDecks') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
 
@@ -54,8 +54,8 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Decks" component={DecksStackScreen} />
-        <Tab.Screen name="Add Decks" component={AddDecks} />
+        <Tab.Screen name="decks" component={DecksStackScreen} />
+        <Tab.Screen name="addDecks" component={AddDecks} />
       </Tab.Navigator>
     </NavigationContainer>
   );
