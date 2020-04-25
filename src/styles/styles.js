@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 export const colors = {
     green: '#8bc34a',
     blue: '#007aff',
+    disabled: '#dedede'
 }
 export const styles = StyleSheet.create({
     container: {

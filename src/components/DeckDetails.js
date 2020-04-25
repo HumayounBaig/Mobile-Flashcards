@@ -53,7 +53,7 @@ export default function DeckDetails({ route, navigation }) {
           </View>
           
           <TouchableOpacity 
-            style={[styles.button, { backgroundColor: colors.blue, marginBottom: 40}]}
+            style={[styles.button, { backgroundColor: colors.blue, marginBottom: 20}]}
             onPress={()=> navigation.navigate("addCard")}
           >
             
