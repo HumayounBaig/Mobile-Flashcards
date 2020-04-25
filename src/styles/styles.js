@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
+export const colors = {
+    green: '#8bc34a',
+    blue: '#007aff',
+}
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -10,7 +14,9 @@ export const styles = StyleSheet.create({
     input: {
         height: 40,
         borderWidth: 1,
-        borderColor: "#dedede"
+        borderColor: "#dedede",
+        margin: 5,
+        borderRadius: 2
     },
     heading: {
         fontSize: 18,
@@ -19,7 +25,8 @@ export const styles = StyleSheet.create({
     },
     button: { 
         padding: 10,
-        alignItems: 'center', 
+        alignItems: 'center',
+        alignSelf: 'center', 
         borderRadius: 5,
         width: 250
     },
@@ -28,6 +35,6 @@ export const styles = StyleSheet.create({
         bottom: 0
     },
     text: {
-        color: 'white'
+        color: 'white',
     }, 
-  });
+});
