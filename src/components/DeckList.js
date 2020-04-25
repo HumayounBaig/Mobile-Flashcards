@@ -22,11 +22,11 @@ export default function DeckList(props) {
 
   function RenderItem({ item }) {
 
-    const {title, count} = item 
+    const {title, questions} = item 
     return (
       <TouchableOpacity style={styles.listItem} onPress={()=> props.navigation.navigate("deckDetails", {deck: item})}>
         <Text style={styles.heading}>{title}</Text>
-        <Text style={[styles.mutedText, {marginTop: 5}]}>{count} cards</Text>
+        <Text style={[styles.mutedText, {marginTop: 5}]}>{questions.length ? `${questions.length} cards` : "No cards found"} </Text>
       </TouchableOpacity>
     );
   }
