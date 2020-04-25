@@ -1,6 +1,5 @@
-export const decks = [
-  {
-    id: "ocq0ec",
+export const decks = {
+  React: {
     title: 'React',
     questions: [
       {
@@ -13,14 +12,14 @@ export const decks = [
       }
     ]
   },
-  {
-    id: "fczkmd",
+  JavaScript: {
     title: 'JavaScript',
+
     questions: [
       {
-        question: 'What is a function?',
-        answer: 'A JavaScript function is a block of code designed to perform a particular task'
+        question: 'What is a closure?',
+        answer: 'The combination of a function and the lexical environmentwithin which that function was declared.'
         }
     ]
   }
-]
+}

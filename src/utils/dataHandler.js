@@ -24,20 +24,44 @@ export const getInitialData = async () => {
   }
 }
 
+export const getDeck = async(id) => {
+  try {
+    const decks = await AsyncStorage.getItem(DECKS_DATA);
+
+    return JSON.parse(decks)[id];
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 export const addDeck = async (title) => {
   try {
-    let deck = JSON.parse(await AsyncStorage.getItem(DECKS_DATA));
-    deck.push({
-        title,
-        questions: [],
-        id: Math.random().toString(36).substring(7)
+    await AsyncStorage.mergeItem(
+      DECKS_DATA,
+      JSON.stringify({
+        [title]: {
+          title,
+          questions: [],
+        }
       })
+    )
+    
+  } catch (error){
+    console.log(error)
+  }
+}
 
-      console.log(deck)
+export const addCard = async (title, card) => {
+  try {
+    const deck = await getDeck(title);
 
-    await AsyncStorage.setItem(
-      DECKS_DATA, 
-      JSON.stringify(deck)
+    await AsyncStorage.mergeItem(
+      DECKS_DATA,
+      JSON.stringify({
+        [title]: {
+          questions: [...deck.questions].concat(card)
+        }
+      })
     );
     
   } catch (error){
