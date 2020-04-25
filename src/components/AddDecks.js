@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { styles, colors } from '../styles/styles';
-import { addDeck } from '../utils/dataHandler'
+import { connect } from 'react-redux';
+import { addDeck } from '../redux/actions'
 
-export default function AddDecks({navigation}) {
+function AddDecks({navigation, addDeck}) {
   const [value, setValue] = useState("")
 
   const handleChangeText = text => {
@@ -11,16 +12,9 @@ export default function AddDecks({navigation}) {
   }
 
   const handleSubmit = async() => {
-    console.log("fads",navigation);
-      
-    await addDeck(value)
+    addDeck(value)
     setValue("")
     navigation.goBack();
-  
-      
-   
-  
-     
   }
 
   const disabled = value === "";
@@ -39,10 +33,11 @@ export default function AddDecks({navigation}) {
           />
 
           <TouchableOpacity
+            onPress={handleSubmit}
             style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.green, marginTop: 40 }]}
             disabled={disabled}
           >
-            <Text onPress={handleSubmit} style={styles.text}>Create Deck</Text>
+            <Text style={styles.text}>Create Deck</Text>
           </TouchableOpacity>
         </KeyboardAvoidingView>
 
@@ -51,4 +46,7 @@ export default function AddDecks({navigation}) {
   );
 }
 
-
+export default connect (
+  null, 
+  { addDeck }
+)(AddDecks);

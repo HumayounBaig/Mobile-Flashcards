@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native';
 import { styles, colors } from '../styles/styles';
 import MoveToBottom from '../helpers/MoveToBottom'
+import { connect } from 'react-redux';
+import { removeDeck } from '../redux/actions'
 
-export default function DeckDetails({ route, navigation }) {
-  console.log(route)
-  const { deck } = route.params
+function DeckDetails({ route, navigation, removeDeck, deck }) {
+  console.log(deck)
  
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -49,12 +50,12 @@ export default function DeckDetails({ route, navigation }) {
           
           <View style={{ alignItems: 'center', marginBottom: 40}}>
             <Text style={styles.heading}>{deck.title}</Text>
-            <Text>{deck.count} Cards</Text>
+            <Text>{deck.questions.length} Cards</Text>
           </View>
           
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: colors.blue, marginBottom: 20}]}
-            onPress={()=> navigation.navigate("addCard")}
+            onPress={()=> navigation.navigate("addCard",{title: deck.title})}
           >
             
             <Text style={styles.text}>Add Card</Text>
@@ -80,4 +81,14 @@ export default function DeckDetails({ route, navigation }) {
   );
 }
 
+const mapStateToProps = (state, { route }) => {
+  const {title} = route.params;
+  const deck = state[title]
+  return {deck}
+}
 
+export default connect(
+  mapStateToProps, {
+    removeDeck
+  }
+)(DeckDetails)

@@ -9,6 +9,15 @@ import DeckDetails from './DeckDetails';
 import AddDecks from './AddDecks';
 import AddCard from './AddCard'
 import { Ionicons } from '@expo/vector-icons';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from  'redux-thunk';
+import reducer from '../redux/reducers/index'
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk)
+);
 
 const DecksStack = createStackNavigator();
 
@@ -31,6 +40,14 @@ const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
+}
+
+function AppNavigator (){
+  return(
     <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -49,8 +66,7 @@ export default function App() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
-        tabBarOptions={{
-          // activeTintColor: 'tomato',
+        tabBarOptions={{ 
           inactiveTintColor: 'gray',
         }}
       >
@@ -58,7 +74,7 @@ export default function App() {
         <Tab.Screen name="addDecks" component={AddDecks} />
       </Tab.Navigator>
     </NavigationContainer>
-  );
+  )
 }
 
 const styles = StyleSheet.create({

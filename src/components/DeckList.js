@@ -1,21 +1,20 @@
 import React, {useEffect, useState} from 'react';
 import { View, Text, StyleSheet, SafeAreaView, FlatList, AsyncStorage, TouchableOpacity } from 'react-native';
-import {styles} from '../styles/styles'
-import { getInitialData } from '../utils/dataHandler'
+import { connect } from 'react-redux';
+import {styles} from '../styles/styles';
+import { handleInitialData } from '../redux/actions'
 
-export default function DeckList(props) {
-  const [deckData, setDeckData] = useState(null);
-  const [loading, setLoading] = useState(true);
+function DeckList({navigation, decks, handleInitialData}) {
+  const [loading, setLoading] = useState(decks ? false : true);
 
   useEffect(() => {
-    fetchData()
+    handleInitialData();
     
   }, []);
 
   const fetchData = async() =>{
     setLoading(true)
-    const data = await getInitialData();
-    setDeckData(data);
+    handleInitialData();
     setLoading(false)
   }
 
@@ -24,7 +23,7 @@ export default function DeckList(props) {
 
     const {title, questions} = item 
     return (
-      <TouchableOpacity style={styles.listItem} onPress={()=> props.navigation.navigate("deckDetails", {deck: item})}>
+      <TouchableOpacity style={styles.listItem} onPress={()=> navigation.navigate("deckDetails", {title: item.title})}>
         <Text style={styles.heading}>{title}</Text>
         <Text style={[styles.mutedText, {marginTop: 5}]}>{questions.length ? `${questions.length} cards` : "No cards found"} </Text>
       </TouchableOpacity>
@@ -35,11 +34,11 @@ export default function DeckList(props) {
       <View style={styles.container}>
           <SafeAreaView>
           {
-            deckData &&
+            decks &&
             <FlatList
-              data={Object.values(deckData)}
+              data={Object.values(decks)}
               renderItem={({item})=> <RenderItem item={item}/>}
-              keyExtractor={item => item.id}
+              keyExtractor={item => item.title}
               onRefresh={fetchData}
               refreshing={loading}
               
@@ -52,4 +51,11 @@ export default function DeckList(props) {
   );
 } 
 
+const mapStateToProps = state => ({
+  decks: state
+})
 
+export default connect(
+  mapStateToProps,
+  { handleInitialData }
+)(DeckList)
