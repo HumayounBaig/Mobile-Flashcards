@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import {styles} from '../styles/styles';
 export default function AddDecks() {
     return (
         <View style={styles.container}>
             <SafeAreaView>
                 <KeyboardAvoidingView>
-                    <Text style={styles.heading}>What is the title of your new deck?</Text>
+                    <Text style={[styles.heading, {marginBottom: 40}]}>What is the title of your new deck?</Text>
                     <TextInput style={styles.input} placeholder="Deck Title" />
-                    <TouchableOpacity style={styles.button}>
+                    <TouchableOpacity style={[styles.button, {backgroundColor: '#8bc34a', marginTop: 40}]}>
                         <Text style={styles.text}>Create Deck</Text>
                     </TouchableOpacity>
                 </KeyboardAvoidingView>

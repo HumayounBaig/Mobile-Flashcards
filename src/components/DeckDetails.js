@@ -1,12 +1,20 @@
 import React from 'react';
 import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native';
-import { styles } from '../styles/styles';
+import { styles, colors } from '../styles/styles';
 import MoveToBottom from '../helpers/MoveToBottom'
 
 export default function DeckDetails({ route, navigation }) {
   console.log(route)
   const { deck } = route.params
+ 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTitle: deck.title
+    })
+  }, [navigation]);
 
+  
+  
   function handleOnPress() {
     Alert.alert(
       `Are you sure you want to delete ${deck.title}`,
@@ -45,14 +53,14 @@ export default function DeckDetails({ route, navigation }) {
           </View>
           
           <TouchableOpacity 
-            style={[styles.button, { backgroundColor: "#007aff", marginBottom: 40}]}
+            style={[styles.button, { backgroundColor: colors.blue, marginBottom: 40}]}
             onPress={()=> navigation.navigate("addCard")}
           >
             
             <Text style={styles.text}>Add Card</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.button, { backgroundColor: "#8bc34a"  }]}>
+          <TouchableOpacity style={[styles.button, { backgroundColor: colors.green  }]}>
             <Text style={styles.text}>Start Quiz</Text>
           </TouchableOpacity>
         </View>

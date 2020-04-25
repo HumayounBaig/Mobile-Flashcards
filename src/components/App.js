@@ -17,7 +17,10 @@ function DecksStackScreen() {
     <DecksStack.Navigator>
       <DecksStack.Screen name="deckList" component={DeckList} />
       <DecksStack.Screen name="deckDetails" component={DeckDetails} />
-      <DecksStack.Screen name="addCard" component={AddCard} />
+      <DecksStack.Screen name="addCard" component={AddCard} options={{
+          headerTitle: "Add Card",
+        }}
+      />
     </DecksStack.Navigator>
   )
 }
