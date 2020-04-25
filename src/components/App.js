@@ -3,12 +3,23 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { StyleSheet, Text, View } from 'react-native';
-import Decks from './Decks';
+import { StyleSheet } from 'react-native';
+import DeckList from './DeckList';
+import DeckDetails from './DeckDetails';
 import AddDecks from './AddDecks';
 import { Ionicons } from '@expo/vector-icons';
 
-const Stack = createStackNavigator();
+const DecksStack = createStackNavigator();
+
+function DecksStackScreen() {
+  return (
+    <DecksStack.Navigator>
+      <DecksStack.Screen name="deckList" component={DeckList} />
+      <DecksStack.Screen name="deckDetails" component={DeckDetails} />
+    </DecksStack.Navigator>
+  )
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -19,11 +30,11 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'Home') {
+            if (route.name === 'DeckList') {
               iconName = focused
-                ? 'ios-information-circle'
-                : 'ios-information-circle-outline';
-            } else if (route.name === 'Settings') {
+                ? 'md-folder'
+                : 'md-folder-open';
+            } else if (route.name === 'AddDecks') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
 
@@ -32,11 +43,11 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          // activeTintColor: 'tomato',
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="Decks" component={Decks} />
+        <Tab.Screen name="DecksList" component={DecksStackScreen} />
         <Tab.Screen name="AddDecks" component={AddDecks} />
       </Tab.Navigator>
     </NavigationContainer>
