@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView, FlatList, AsyncStorage, TouchableOpacity } from 'react-native';
+import {styles} from '../styles/styles'
+
 
 export default function DeckList(props) {
   const DATA = [
@@ -20,36 +22,26 @@ export default function DeckList(props) {
     },
   ];
 
-  
-  function Item({ item }) {
-    const {title, count} = item 
-    return (
-      <TouchableOpacity style={styles.item} onPress={()=> props.navigation.navigate("deckDetails", {deck: item})}>
-        <Text style={styles.title}>{title}</Text>
-        <Text>{count}</Text>
-      </TouchableOpacity>
-    );
-  }
-
   return (
       <View style={styles.container}>
           <SafeAreaView>
           <FlatList
             data={DATA}
-            renderItem={({item})=> <Item item={item}/>}
+            renderItem={({item})=> <RenderItem item={item}/>}
             keyExtractor={item => item.id}
           />
       
           </SafeAreaView>
       </View>
   );
-}
+} 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+function RenderItem({ item }) {
+  const {title, count} = item 
+  return (
+    <TouchableOpacity style={styles.listItem} onPress={()=> props.navigation.navigate("deckDetails", {deck: item})}>
+      <Text style={styles.heading}>{title}</Text>
+      <Text style={[styles.mutedText, {marginTop: 5}]}>{count} cards</Text>
+    </TouchableOpacity>
+  );
+}

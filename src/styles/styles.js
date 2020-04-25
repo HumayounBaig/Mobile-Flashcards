@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 
 export const colors = {
     green: '#8bc34a',
@@ -37,4 +37,15 @@ export const styles = StyleSheet.create({
     text: {
         color: 'white',
     }, 
+    mutedText:{
+        color: '#777'
+    },
+    listItem: {
+        flex: 1,
+        width: Dimensions.get('window').width,
+        alignItems: 'center',
+        padding: 20,
+        borderBottomWidth: 1,
+        borderBottomColor: '#dedede'
+    }
 });

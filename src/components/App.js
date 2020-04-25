@@ -15,7 +15,9 @@ const DecksStack = createStackNavigator();
 function DecksStackScreen() {
   return (
     <DecksStack.Navigator>
-      <DecksStack.Screen name="deckList" component={DeckList} />
+      <DecksStack.Screen name="deckList" component={DeckList} options={{
+          headerTitle: "Decks",
+        }}/>
       <DecksStack.Screen name="deckDetails" component={DeckDetails} />
       <DecksStack.Screen name="addCard" component={AddCard} options={{
           headerTitle: "Add Card",

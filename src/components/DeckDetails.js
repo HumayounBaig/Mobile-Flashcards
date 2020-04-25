@@ -39,7 +39,7 @@ export default function DeckDetails({ route, navigation }) {
 
   function handleDelete(){
 
-
+    navigation.pop()
   }
 
   return (
