@@ -1,29 +1,75 @@
 import React from 'react';
-import { View, Text, StyleSheet, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native';
-import {styles} from '../styles/styles';
+import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 'react-native';
+import { styles } from '../styles/styles';
+import MoveToBottom from '../helpers/MoveToBottom'
 
-export default function DeckDetails({route}) {
-    console.log(route)
-   const {deck} = route.params
+export default function DeckDetails({ route, navigation }) {
+  console.log(route)
+  const { deck } = route.params
 
-    return (
-        <View style={styles.container}>
-            <SafeAreaView>
-                <View style={{alignItems: 'center'}}>
-                    <Text style={styles.heading}>{deck.title}</Text>
-                    <Text>{deck.count}</Text>
-                </View>
-                <TouchableOpacity style={[styles.button, {backgroundColor: "#007aff", width: 250}]}>
-                    <Text style={styles.text}>Add Card</Text>
-                </TouchableOpacity>
+  function handleOnPress() {
+    Alert.alert(
+      `Are you sure you want to delete ${deck.title}`,
+      "",
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "Delete",
+          onPress: () => handleDelete(),
+          style: "destructive"
 
-                <TouchableOpacity style={[styles.button, {backgroundColor: "#8bc34a", width: 250}]}>
-                    <Text style={styles.text}>Start Quiz</Text>
-                </TouchableOpacity>
+        },
 
-            </SafeAreaView>
-        </View>
+      ],
+      { cancelable: false }
     );
+  }
+
+  function handleDelete(){
+
+
+  }
+
+  return (
+    <View style={styles.container}>
+      <SafeAreaView>
+        <View style={{height: "90%", justifyContent: 'center' }}>
+          
+          <View style={{ alignItems: 'center', marginBottom: 40}}>
+            <Text style={styles.heading}>{deck.title}</Text>
+            <Text>{deck.count} Cards</Text>
+          </View>
+          
+          <TouchableOpacity 
+            style={[styles.button, { backgroundColor: "#007aff", marginBottom: 40}]}
+            onPress={()=> navigation.navigate("addCard")}
+          >
+            
+            <Text style={styles.text}>Add Card</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={[styles.button, { backgroundColor: "#8bc34a"  }]}>
+            <Text style={styles.text}>Start Quiz</Text>
+          </TouchableOpacity>
+        </View>
+
+
+        {
+          MoveToBottom(
+            <TouchableOpacity style={styles.deleteButton}>
+              <Text style={[styles.text, { color: "red" }]} onPress={handleOnPress}>Delete Deck</Text>
+            </TouchableOpacity>
+          )
+        }
+
+
+      </SafeAreaView>
+    </View>
+  );
 }
 
 
