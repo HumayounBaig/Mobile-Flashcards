@@ -15,19 +15,19 @@ export const styles = StyleSheet.create({
     heading: {
         fontSize: 18,
         fontWeight: "bold",
-        marginBottom: 20,
+        color: '#444'
     },
-    button: {
-        backgroundColor: "green",
+    button: { 
         padding: 10,
-        width: 150,
-        alignItems: 'center',
-        alignSelf: "center",
-        marginTop: 40,
-        borderRadius: 5
-
+        alignItems: 'center', 
+        borderRadius: 5,
+        width: 250
+    },
+    deleteButton:{
+        position: 'absolute',
+        bottom: 0
     },
     text: {
         color: 'white'
-    }
+    }, 
   });
