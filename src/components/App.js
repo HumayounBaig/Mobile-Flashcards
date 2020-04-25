@@ -7,6 +7,7 @@ import { StyleSheet } from 'react-native';
 import DeckList from './DeckList';
 import DeckDetails from './DeckDetails';
 import AddDecks from './AddDecks';
+import AddCard from './AddCard'
 import { Ionicons } from '@expo/vector-icons';
 
 const DecksStack = createStackNavigator();
@@ -16,6 +17,7 @@ function DecksStackScreen() {
     <DecksStack.Navigator>
       <DecksStack.Screen name="deckList" component={DeckList} />
       <DecksStack.Screen name="deckDetails" component={DeckDetails} />
+      <DecksStack.Screen name="addCard" component={AddCard} />
     </DecksStack.Navigator>
   )
 }
@@ -30,11 +32,11 @@ export default function App() {
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
 
-            if (route.name === 'DeckList') {
+            if (route.name === 'Decks') {
               iconName = focused
                 ? 'md-folder'
                 : 'md-folder-open';
-            } else if (route.name === 'AddDecks') {
+            } else if (route.name === 'Add Decks') {
               iconName = focused ? 'ios-list-box' : 'ios-list';
             }
 
@@ -47,8 +49,8 @@ export default function App() {
           inactiveTintColor: 'gray',
         }}
       >
-        <Tab.Screen name="DecksList" component={DecksStackScreen} />
-        <Tab.Screen name="AddDecks" component={AddDecks} />
+        <Tab.Screen name="Decks" component={DecksStackScreen} />
+        <Tab.Screen name="Add Decks" component={AddDecks} />
       </Tab.Navigator>
     </NavigationContainer>
   );
