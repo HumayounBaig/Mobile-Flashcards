@@ -39,7 +39,6 @@ export const handleInitialData = () => {
   return async dispatch => {
     const data  = await getInitialData()
     if(data){
-      console.log(data);
       return dispatch(receiveDecks(data))
     }
   };

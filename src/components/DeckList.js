@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, SafeAreaView, FlatList, AsyncStorage, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, FlatList, StatusBar, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import {styles} from '../styles/styles';
 import { handleInitialData } from '../redux/actions'
@@ -34,7 +34,8 @@ function DeckList({navigation, decks, handleInitialData}) {
   const data = decks ? decks : []
 
   return (
-      <View style={styles.container}>
+      <View style={styles.container}>     
+       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
           <SafeAreaView>
             <FlatList
               data={Object.values(data)}

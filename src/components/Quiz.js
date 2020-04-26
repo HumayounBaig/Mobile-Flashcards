@@ -17,7 +17,6 @@ const answer = {
   INCORRECT: 'INCORRECT'
 };
 
-const WIDTH = Dimensions.get('window').width;
 
 function Quiz({ navigation, deck, title }) {
 
@@ -31,9 +30,9 @@ function Quiz({ navigation, deck, title }) {
   useEffect(() => {
   }, []);
 
-  constsetNotification = async () => {
-    await clearLocalNotification()
-    await setLocalNotification();
+  constsetNotification = () => {
+    clearLocalNotification()
+    setLocalNotification();
 
   }
 

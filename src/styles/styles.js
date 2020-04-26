@@ -60,7 +60,6 @@ export const styles = StyleSheet.create({
     },
     viewPager: {
         flex: 1,
-        borderWidth: 1,
         width: Dimensions.get('window').width,
         height: "50%"
     },

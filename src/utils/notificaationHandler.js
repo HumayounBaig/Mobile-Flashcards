@@ -4,7 +4,7 @@ import { Notifications } from 'expo';
 
 import * as Permissions from 'expo-permissions';
 
-const NOTIFICATION_KEY = 'NOTIFICATION_KEY';
+const NOTIFICATION_KEY = 'MobileFlashCards:key';
 const CHANNEL_ID = 'DailyReminder';
 
 function generateNotification() {
@@ -22,9 +22,9 @@ function generateNotification() {
   }
 }
 
-export async function clearLocalNotification() {
-  await AsyncStorage.removeItem(NOTIFICATION_KEY)
-  Notifications.cancelAllScheduledNotificationsAsync
+export function clearLocalNotification() {
+  AsyncStorage.removeItem(NOTIFICATION_KEY)
+  
   
 }
 
@@ -37,40 +37,49 @@ function createChannel() {
   }
 }
 let token = ""
-export async function setLocalNotification() {
-  const data = await AsyncStorage.getItem(NOTIFICATION_KEY)
-  if (data === null) {
-    const status = await Permissions.askAsync(Permissions.NOTIFICATIONS)
-    if (status === "granted") {
-      if (Platform.OS === 'android') {
-        Notifications.createChannelAndroidAsync(CHANNEL_ID, createChannel())
-          .then(val => console.log('channel says', val))
 
-      }
-      Notifications.cancelAllScheduledNotificationsAsync();
+export function setLocalNotification() { 
+  AsyncStorage.getItem(NOTIFICATION_KEY)
+  .then(JSON.parse)
+  .then(data => {
+    if (data === null) { 
+  
+      Permissions.askAsync(Permissions.NOTIFICATIONS)
+      .then(status => { 
+        if (status.status === "granted") { 
+          if (Platform.OS === 'android') {
+            Notifications.createChannelAndroidAsync(CHANNEL_ID, createChannel())
+              .then(val => console.log('channel says', val))
+    
+          }
+          Notifications.cancelAllScheduledNotificationsAsync();
+    
+          const NextDay = new Date(); 
+          NextDay.setDate(NextDay.getDate() + 1);
+          NextDay.setHours(20);
+          NextDay.setMinutes();
+          // sendPushNotification()
+          Notifications.scheduleLocalNotificationAsync(
+            generateNotification(),
+            {
+              time: NextDay,
+              repeat: 'day'
+            }
+          )
 
-      const NextDay = new Date();
-
-      // NextDay.setDate(NextDay.getDate());
-      // NextDay.setHours(18);
-      // NextDay.setMinutes(5);
-      // NextDay.setMonth()
-      NextDay.setSeconds(t.getSeconds() + 10);
-
-      Notifications.scheduleLocalNotificationAsync(
-        generateNotification(),
-        {
-          time: NextDay,
-          repeat: 'day'
+          
+    
         }
-      )
-      sendPushNotification()
-      await AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
-
+      })
+      
+      setNotify()
+      
     }
-    const tok = await Notifications.getExpoPushTokenAsync()
-    token = tok
-  }
+  })
+}
+
+const setNotify = async () => {
+  await AsyncStorage.setItem(NOTIFICATION_KEY, "true")
 }
 
 const getToken = async () => {
@@ -78,7 +87,7 @@ const getToken = async () => {
   return token
 }
 
-export function sendPushNotification() { 
+export function sendPushNotification() {  
 
   const message = {
     to: getToken(),
