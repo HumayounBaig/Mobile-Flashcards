@@ -7,23 +7,31 @@ import * as Permissions from 'expo-permissions';
 const NOTIFICATION_KEY = 'MobileFlashCards:key';
 const CHANNEL_ID = 'DailyReminder';
 
-function generateNotification() {
+function createNotification () {
   return {
-    to: getToken(),
-    title: 'Daily Reminder',
-    body: `Don't forget to study today!`,
+    title: 'Daily Reminder!',
+    body: "Hey! Don't forget to study today!",
+    ios: {
+      sound: true,
+    },
     _displayInForeground: true,
-    sound: 'default',
 
     android: {
-      chhannelId: CHANNEL_ID,
+      sound: true,
+      priority: 'high',
       sticky: false,
+      vibrate: true,
+      chhannelId: CHANNEL_ID,
+
     }
   }
 }
 
 export function clearLocalNotification() {
-  AsyncStorage.removeItem(NOTIFICATION_KEY)
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
+
   
   
 }
@@ -42,44 +50,32 @@ export function setLocalNotification() {
   AsyncStorage.getItem(NOTIFICATION_KEY)
   .then(JSON.parse)
   .then(data => {
-    if (data === null) { 
-  
+    if (data === null) {
       Permissions.askAsync(Permissions.NOTIFICATIONS)
-      .then(status => { 
-        if (status.status === "granted") { 
-          if (Platform.OS === 'android') {
-            Notifications.createChannelAndroidAsync(CHANNEL_ID, createChannel())
-              .then(val => console.log('channel says', val))
-    
-          }
-          Notifications.cancelAllScheduledNotificationsAsync();
-    
-          const NextDay = new Date(); 
-          NextDay.setDate(NextDay.getDate() + 1);
-          NextDay.setHours(20);
-          NextDay.setMinutes(0);
-          Notifications.scheduleLocalNotificationAsync(
-            generateNotification(),
-            {
-              time: NextDay,
-              repeat: 'day'
-            }
-          )
+        .then(({ status }) => {
+          if (status === 'granted') {
+            Notifications.cancelAllScheduledNotificationsAsync()
 
-          
-    
-        }
-      })
-      
-      setNotify()
-      
+            let tomorrow = new Date()
+            tomorrow.setDate(tomorrow.getDate() + 1)
+            tomorrow.setHours(20)
+            tomorrow.setMinutes(0)
+
+            Notifications.scheduleLocalNotificationAsync(
+              createNotification(),
+              {
+                time: tomorrow,
+                repeat: 'day',
+              }
+            )
+
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
+          }
+        })
     }
   })
 }
 
-const setNotify = async () => {
-  await AsyncStorage.setItem(NOTIFICATION_KEY, "true")
-}
 
 const getToken = async () => {
   token = await Notifications.getExpoPushTokenAsync();

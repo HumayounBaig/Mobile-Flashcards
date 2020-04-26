@@ -30,8 +30,7 @@ function Quiz({ navigation, deck, title }) {
   const setNotification = () => {
     clearLocalNotification().then(
       setLocalNotification
-
-    )
+    ) 
 
   }
 

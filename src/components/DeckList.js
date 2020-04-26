@@ -39,7 +39,7 @@ function DeckList({navigation, decks, handleInitialData}) {
             <FlatList
               data={Object.values(data)}
               renderItem={({item})=> <RenderItem item={item}/>}
-              keyExtractor={item => item.title}
+              keyExtractor={item => item.id}
               onRefresh={fetchData}
               refreshing={loading}
               
