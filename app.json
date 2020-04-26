@@ -12,6 +12,17 @@
     ],
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "io.humayounbaig.mobileflashcards"
+    },
+    "android": {
+      "package": "io.humayounbaig.mobileflashcards"
+    }
   }
+  
 }
