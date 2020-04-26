@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,7 +12,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from  'redux-thunk';
-import reducer from '../redux/reducers/index'
+import reducer from '../redux/reducers/index';
+import { setLocalNotification, sendPushNotification } from '../utils/notificaationHandler'
+import Quiz from './Quiz'
 
 const store = createStore(
   reducer,
@@ -32,6 +34,10 @@ function DecksStackScreen() {
           headerTitle: "Add Card",
         }}
       />
+      <DecksStack.Screen name="quiz" component={Quiz} options={{
+          headerTitle: "Quiz",
+        }}
+      />
     </DecksStack.Navigator>
   )
 }
@@ -39,6 +45,11 @@ function DecksStackScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  
+  useEffect(() => {
+    setLocalNotification();
+     
+  }, []);
   return (
     <Provider store={store}>
       <AppNavigator />

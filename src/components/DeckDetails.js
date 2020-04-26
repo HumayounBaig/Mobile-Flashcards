@@ -3,9 +3,9 @@ import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 
 import { styles, colors } from '../styles/styles';
 import MoveToBottom from '../helpers/MoveToBottom'
 import { connect } from 'react-redux';
-import { removeDeck } from '../redux/actions'
+import { removeDeck, deleteDeck } from '../redux/actions'
 
-function DeckDetails({ route, navigation, removeDeck, deck }) {
+function DeckDetails({ route, navigation, deleteDeck, deck }) {
   console.log(deck)
  
   React.useLayoutEffect(() => {
@@ -39,9 +39,11 @@ function DeckDetails({ route, navigation, removeDeck, deck }) {
   }
 
   function handleDelete(){
-
+    deleteDeck(deck.title)
     navigation.pop()
   }
+
+  const {title, questions} =deck
 
   return (
     <View style={styles.container}>
@@ -49,20 +51,23 @@ function DeckDetails({ route, navigation, removeDeck, deck }) {
         <View style={{height: "90%", justifyContent: 'center' }}>
           
           <View style={{ alignItems: 'center', marginBottom: 40}}>
-            <Text style={styles.heading}>{deck.title}</Text>
-            <Text>{deck.questions.length} Cards</Text>
+            <Text style={styles.heading}>{title }</Text>
+            <Text>{ questions.length } Cards</Text>
           </View>
           
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: colors.blue, marginBottom: 20}]}
-            onPress={()=> navigation.navigate("addCard",{title: deck.title})}
+            onPress={()=> navigation.navigate("addCard",{title: title})}
           >
             
             <Text style={styles.text}>Add Card</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[styles.button, { backgroundColor: colors.green  }]}>
-            <Text style={styles.text}>Start Quiz</Text>
+            <Text 
+            style={styles.text}
+            onPress={() => navigation.navigate("quiz", {title: deck.title})}  
+          >Start Quiz</Text>
           </TouchableOpacity>
         </View>
 
@@ -83,12 +88,12 @@ function DeckDetails({ route, navigation, removeDeck, deck }) {
 
 const mapStateToProps = (state, { route }) => {
   const {title} = route.params;
-  const deck = state[title]
+  const deck = state[title] ? state[title] : {title: "", questions: 0}
   return {deck}
 }
 
 export default connect(
   mapStateToProps, {
-    removeDeck
+    deleteDeck
   }
 )(DeckDetails)
