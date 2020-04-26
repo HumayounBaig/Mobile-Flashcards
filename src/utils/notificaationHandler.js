@@ -57,8 +57,7 @@ export function setLocalNotification() {
           const NextDay = new Date(); 
           NextDay.setDate(NextDay.getDate() + 1);
           NextDay.setHours(20);
-          NextDay.setMinutes();
-          // sendPushNotification()
+          NextDay.setMinutes(0);
           Notifications.scheduleLocalNotificationAsync(
             generateNotification(),
             {

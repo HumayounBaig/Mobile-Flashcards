@@ -28,9 +28,10 @@ function Quiz({ navigation, deck, title }) {
   const [page, setPage] = useState(0)
 
   useEffect(() => {
+    setLocalNotification()
   }, []);
 
-  constsetNotification = () => {
+  const setNotification = () => {
     clearLocalNotification()
     setLocalNotification();
 
