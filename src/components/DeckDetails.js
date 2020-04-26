@@ -63,10 +63,12 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
             <Text style={styles.text}>Add Card</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[styles.button, { backgroundColor: colors.green  }]}>
+          <TouchableOpacity 
+            style={[styles.button, { backgroundColor: colors.green  }]}
+            onPress={() => navigation.navigate("quiz", {title: deck.title})}  
+          >
             <Text 
             style={styles.text}
-            onPress={() => navigation.navigate("quiz", {title: deck.title})}  
           >Start Quiz</Text>
           </TouchableOpacity>
         </View>
