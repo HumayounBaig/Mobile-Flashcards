@@ -3,6 +3,7 @@ import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoiding
 import { styles, colors } from '../styles/styles';
 import { connect } from 'react-redux';
 import { addCardDeck } from '../redux/actions'
+import { addCardAS } from '../utils/dataHandler'
 
 function AddCard({navigation, addCardDeck, title}) {
 
@@ -10,11 +11,17 @@ function AddCard({navigation, addCardDeck, title}) {
   const [answer, setAnswer] = useState("")
 
   const disabled = (question === "" || answer === "") ? true : false;
-  const handleSubmit = () => {
+  const handleSubmit = async() => {
     addCardDeck(title, {
       question, 
       answer
     })
+    await addCardAS(
+      title, {
+        question, 
+        answer
+      }
+    )
     setQuestion("")
     setAnswer("")
     navigation.goBack();

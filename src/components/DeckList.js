@@ -33,8 +33,6 @@ function DeckList({navigation, decks, handleInitialData}) {
   return (
       <View style={styles.container}>
           <SafeAreaView>
-          {
-            decks &&
             <FlatList
               data={Object.values(decks)}
               renderItem={({item})=> <RenderItem item={item}/>}
@@ -43,7 +41,6 @@ function DeckList({navigation, decks, handleInitialData}) {
               refreshing={loading}
               
             />
-          }
           
       
           </SafeAreaView>

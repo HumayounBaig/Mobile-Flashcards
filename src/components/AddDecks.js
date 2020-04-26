@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, SafeAreaView, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 import { styles, colors } from '../styles/styles';
+import { addDeckAS } from '../utils/dataHandler'
 import { connect } from 'react-redux';
 import { addDeck } from '../redux/actions'
 
@@ -13,8 +14,9 @@ function AddDecks({navigation, addDeck}) {
 
   const handleSubmit = async() => {
     addDeck(value)
+    await addDeckAS(value)
     setValue("")
-    navigation.goBack();
+    navigation.navigate("deckList");
   }
 
   const disabled = value === "";
@@ -36,6 +38,7 @@ function AddDecks({navigation, addDeck}) {
             onPress={handleSubmit}
             style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.green, marginTop: 40 }]}
             disabled={disabled}
+            value ={value}
           >
             <Text style={styles.text}>Create Deck</Text>
           </TouchableOpacity>
