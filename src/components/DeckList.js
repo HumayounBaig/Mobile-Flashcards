@@ -35,7 +35,7 @@ function DeckList({navigation, decks, handleInitialData}) {
 
   return (
       <View style={styles.container}>     
-       <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#00BCD4" translucent = {true}/>
+       <StatusBar barStyle = "dark-content" />
           <SafeAreaView>
             <FlatList
               data={Object.values(data)}
