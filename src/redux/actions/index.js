@@ -20,15 +20,14 @@ export function receiveDecks(decks) {
 }
 
 
-export function removeDeck(id) {
+export function deleteDeck(id) {
   return {
-    type: REMOVE_DECK,
+    type: DELETE_DECK,
     id
   };
 }
 
 export function addCardDeck(cardId, card) {
-  console.log(cardId, card)
   return {
     type: ADD_CARD,
     cardId,

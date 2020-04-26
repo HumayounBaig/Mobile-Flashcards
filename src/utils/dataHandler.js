@@ -34,7 +34,7 @@ export const getDeck = async(id) => {
   }
 }
 
-export const addDeck = async (title) => {
+export const addDeckAS = async (title) => {
   try {
     await AsyncStorage.mergeItem(
       DECKS_DATA,
@@ -51,7 +51,7 @@ export const addDeck = async (title) => {
   }
 }
 
-export const addCard = async (title, card) => {
+export const addCardAS = async (title, card) => {
   try {
     const deck = await getDeck(title);
 
@@ -69,14 +69,14 @@ export const addCard = async (title, card) => {
   }
 }
 
-const _retrieveData = async () => {
+export async function deleteDeckAS(key) {
   try {
-    const value = await AsyncStorage.getItem('TASKS');
-    if (value !== null) {
-      // We have data!!
-      console.log(value);
-    }
-  } catch (error) {
-    // Error retrieving data
+    const results = await AsyncStorage.getItem(DECKS_DATA);
+    const data = JSON.parse(results);
+    data[key] = undefined;
+    delete data[key];
+    AsyncStorage.setItem(DECKS_DATA, JSON.stringify(data));
+  } catch (err) {
+    console.log(err);
   }
-};
+}
