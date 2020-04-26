@@ -14,30 +14,28 @@ export default function decks(state = {}, action) {
       };
 
     case ADD_DECK:
-      const { title } = action;
+      const { title, id } = action;
       return {
         ...state,
-        [title]: {
+        [id]: {
           title,
+          id,
           questions: []
         }
       };
 
     case DELETE_DECK:
-      const { id } = action;
-      // return ({ [id]: value, ...remainingDecks } = state);
-      const { [id]: value, ...remainingDecks } = state;
-      console.log(remainingDecks);
+      const { deckId } = action;
+      const { [deckId]: value, ...remainingDecks } = state;
       return remainingDecks;
     
     case ADD_CARD:
-      const { cardId,card } = action;
-      console.log(action)
+      const { deckCard,card } = action;
       return {
         ...state,
-        [cardId]: {
-          ...state[cardId],
-          questions: [...state[cardId].questions].concat(card)
+        [deckCard.id]: {
+          ...state[deckCard.id],
+          questions: [...state[deckCard.id].questions].concat(card)
         }
       };
     default:

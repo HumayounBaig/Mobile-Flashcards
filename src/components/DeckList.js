@@ -20,11 +20,10 @@ function DeckList({navigation, decks, handleInitialData}) {
 
 
   function RenderItem({ item }) {
-
     const {title, questions} = item 
 
     return (
-      <TouchableOpacity style={styles.listItem} onPress={()=> navigation.navigate("deckDetails", {title: item.title})}>
+      <TouchableOpacity style={styles.listItem} onPress={()=> navigation.navigate("deckDetails", {title: item.title, id: item.id})}>
         <Text style={styles.heading}>{title}</Text>
         <Text style={[styles.mutedText, {marginTop: 5}]}>{questions.length ? `${questions.length} cards` : "No cards found"} </Text>
       </TouchableOpacity>

@@ -5,10 +5,11 @@ export const ADD_CARD = 'ADD_CARD'
 export const DELETE_DECK = 'DELETE_DECK'
 export const RECEIVE_DECKS = 'RECEIVE_DECKS';
 
-export function addDeck(title) {
+export function addDeck(deck) {
   return {
     type: ADD_DECK,
-    title
+    title: deck.title,
+    id: deck.id
   };
 }
 
@@ -23,14 +24,14 @@ export function receiveDecks(decks) {
 export function deleteDeck(id) {
   return {
     type: DELETE_DECK,
-    id
+    deckId: id
   };
 }
 
-export function addCardDeck(cardId, card) {
+export function addCardDeck(deckCard, card) {
   return {
     type: ADD_CARD,
-    cardId,
+    deckCard,
     card
   };
 }

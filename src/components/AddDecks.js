@@ -13,10 +13,15 @@ function AddDecks({navigation, addDeck}) {
   }
 
   const handleSubmit = async() => {
-    addDeck(value)
-    await addDeckAS(value)
+    let deckData = {
+      title: value,
+      id: Math.random().toString(36).substring(7)
+    }
+    addDeck(deckData)
+    await addDeckAS(deckData)
     setValue("")
-    navigation.navigate("deckDetails", {title: value});
+    
+    navigation.navigate("deckDetails", deckData);
   }
 
   const disabled = value === "";

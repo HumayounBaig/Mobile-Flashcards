@@ -5,19 +5,19 @@ import { connect } from 'react-redux';
 import { addCardDeck } from '../redux/actions'
 import { addCardAS } from '../utils/dataHandler'
 
-function AddCard({navigation, addCardDeck, title}) {
+function AddCard({navigation, addCardDeck, deck}) {
 
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("")
 
   const disabled = (question === "" || answer === "") ? true : false;
   const handleSubmit = async() => {
-    addCardDeck(title, {
+    addCardDeck(deck, {
       question, 
       answer
     })
     await addCardAS(
-      title, {
+      deck, {
         question, 
         answer
       }
@@ -49,9 +49,9 @@ function AddCard({navigation, addCardDeck, title}) {
 }
 
 const mapStateToProps = (state, {route}) => {
-  const {title} = route.params
+  const {deck} = route.params
   return {
-    title
+    deck
   }
   
 }

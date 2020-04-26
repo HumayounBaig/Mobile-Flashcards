@@ -1,6 +1,7 @@
 export const decks = {
-  React: {
+  ocq0ec: {
     title: 'React',
+    id: "ocq0ec",
     questions: [
       {
         question: 'What is React?',
@@ -12,9 +13,9 @@ export const decks = {
       }
     ]
   },
-  JavaScript: {
+  uh018k: {
     title: 'JavaScript',
-
+    id: "uh018k",
     questions: [
       {
         question: 'What is a closure?',

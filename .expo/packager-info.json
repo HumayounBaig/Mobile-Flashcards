@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 80202,
+  "packagerPid": 86057,
   "expoServerNgrokUrl": "https://q8-sib.humayounmani.mobile-flashcards.exp.direct",
   "packagerNgrokUrl": "https://packager.q8-sib.humayounmani.mobile-flashcards.exp.direct",
-  "ngrokPid": 80218
+  "ngrokPid": 86074
 }

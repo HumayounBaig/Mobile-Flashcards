@@ -3,7 +3,7 @@ import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 
 import { styles, colors } from '../styles/styles';
 import MoveToBottom from '../helpers/MoveToBottom'
 import { connect } from 'react-redux';
-import { removeDeck, deleteDeck } from '../redux/actions';
+import { deleteDeck } from '../redux/actions';
 import { deleteDeckAS } from '../utils/dataHandler'
 
 function DeckDetails({ route, navigation, deleteDeck, deck }) {
@@ -39,12 +39,12 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
   }
 
   async function handleDelete(){
-    deleteDeck(deck.title)
-    await deleteDeckAS(deck.title)
+    deleteDeck(deck.id)
+    await deleteDeckAS(deck.id)
     navigation.pop()
   }
 
-  const {title, questions} =deck
+  const {title, questions, id} =deck
 
   return (
     <View style={styles.container}>
@@ -58,7 +58,7 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
           
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: colors.blue, marginBottom: 20}]}
-            onPress={()=> navigation.navigate("addCard",{title: title})}
+            onPress={()=> navigation.navigate("addCard",{deck: deck})}
           >
             
             <Text style={styles.text}>Add Card</Text>
@@ -66,7 +66,7 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
 
           <TouchableOpacity 
             style={[styles.button, { backgroundColor: colors.green  }]}
-            onPress={() => navigation.navigate("quiz", {title: deck.title})}  
+            onPress={() => navigation.navigate("quiz", {id: deck.id})}  
           >
             <Text 
             style={styles.text}
@@ -90,8 +90,8 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
 }
 
 const mapStateToProps = (state, { route }) => {
-  const {title} = route.params;
-  const deck = state[title] ? state[title] : {title: "", questions: 0}
+  const {id} = route.params;
+  const deck = state[id] ? state[id] : {id: "", questions: 0}
   return {deck}
 }
 

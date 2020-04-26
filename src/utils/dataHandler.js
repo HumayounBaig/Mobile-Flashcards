@@ -10,7 +10,6 @@ export const getInitialData = async () => {
     
     if(data){ 
       const decksData = JSON.parse(data)
-      
       return decksData;
     }else{
       const decksData = await AsyncStorage.setItem(
@@ -34,12 +33,14 @@ export const getDeck = async(id) => {
   }
 }
 
-export const addDeckAS = async (title) => {
+export const addDeckAS = async (data) => {
   try {
+    const {title, id} = data
     await AsyncStorage.mergeItem(
       DECKS_DATA,
       JSON.stringify({
-        [title]: {
+        [id]: {
+          id,
           title,
           questions: [],
         }
@@ -51,14 +52,15 @@ export const addDeckAS = async (title) => {
   }
 }
 
-export const addCardAS = async (title, card) => {
+export const addCardAS = async (deckData, card) => {
   try {
-    const deck = await getDeck(title);
+
+    const deck = await getDeck(deckData.id);
 
     await AsyncStorage.mergeItem(
       DECKS_DATA,
       JSON.stringify({
-        [title]: {
+        [deckData.id]: {
           questions: [...deck.questions].concat(card)
         }
       })
