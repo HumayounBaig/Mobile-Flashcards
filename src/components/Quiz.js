@@ -66,7 +66,7 @@ function Quiz({ navigation, deck, title }) {
 
   const handleQuit = () => {
     handleReset();
-    navigation.navigate('deckList');
+    navigation.navigate('deckDetails');
   } 
 
   const handleReset = () => {
@@ -133,7 +133,7 @@ function Quiz({ navigation, deck, title }) {
             >
               <Text   
                 style={[styles.text, { color: "white" }]} 
-              >Quit</Text>
+              >Back to Deck</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -166,7 +166,7 @@ function Quiz({ navigation, deck, title }) {
                         >
                           <Text
                             style={[styles.text, { color: "red" }]} 
-                          >Reveal Answer</Text>
+                          >Show Answer</Text>
                         </TouchableOpacity>
         
                       ) : (
