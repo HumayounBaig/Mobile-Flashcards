@@ -16,7 +16,7 @@ function AddDecks({navigation, addDeck}) {
     addDeck(value)
     await addDeckAS(value)
     setValue("")
-    navigation.navigate("deckList");
+    navigation.navigate("deckDetails", {title: value});
   }
 
   const disabled = value === "";
