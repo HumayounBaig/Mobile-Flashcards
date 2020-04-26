@@ -39,8 +39,8 @@ and utilizes redux to seamlessly pass data throoughout the application.
 
 ## Platforms Tested
 
-| Platform | Tested | Notes | 
-|:---------|:-------|:------|
+| Platform | Tested |
+|:---------|:-------| 
 | iOS | :white_check_mark: | | 
 | Android | :white_check_mark: | 
 | Android (Simulator) | :white_check_mark: | 
