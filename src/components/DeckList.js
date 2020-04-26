@@ -22,6 +22,7 @@ function DeckList({navigation, decks, handleInitialData}) {
   function RenderItem({ item }) {
 
     const {title, questions} = item 
+
     return (
       <TouchableOpacity style={styles.listItem} onPress={()=> navigation.navigate("deckDetails", {title: item.title})}>
         <Text style={styles.heading}>{title}</Text>
@@ -29,12 +30,14 @@ function DeckList({navigation, decks, handleInitialData}) {
       </TouchableOpacity>
     );
   }
+  
+  const data = decks ? decks : []
 
   return (
       <View style={styles.container}>
           <SafeAreaView>
             <FlatList
-              data={Object.values(decks)}
+              data={Object.values(data)}
               renderItem={({item})=> <RenderItem item={item}/>}
               keyExtractor={item => item.title}
               onRefresh={fetchData}

@@ -22,6 +22,9 @@
     },
     "android": {
       "package": "io.humayounbaig.mobileflashcards"
+    },
+    "notification": {
+      "iosDisplayInForeground": true
     }
   }
   

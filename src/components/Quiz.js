@@ -29,15 +29,16 @@ function Quiz({ navigation, deck, title }) {
   const [page, setPage] = useState(0)
 
   useEffect(() => {
-    clearLocalNotification().then(setLocalNotification);
-    bodyRef.setPage(0)
   }, []);
 
-  useEffect(() => {
-    console.log(currentView)
-    if(questionsCount === correct + incorrect) {
-      console.log('page',page)
-      console.log("came in")
+  constsetNotification = async () => {
+    await clearLocalNotification()
+    await setLocalNotification();
+
+  }
+
+  useEffect(() => { 
+    if(questionsCount === correct + incorrect) { 
       setCurrentView(view.RESULT)
     }else if(correct + incorrect != 0){
       bodyRef.setPage(page + 1)
@@ -46,9 +47,7 @@ function Quiz({ navigation, deck, title }) {
   }, [correct, incorrect]);
 
   const handleAnswer = (submission, page) => {
-    setPage(page)
-    console.log(bodyRef)
-    console.log(submission)
+    setPage(page) 
     if(submission === answer.CORRECT){
       setCorrect(correct + 1);
     } else {
@@ -220,7 +219,6 @@ function Quiz({ navigation, deck, title }) {
 }
 
 const mapStateToProps = (state, { route }) => {
-  console.log(route)
   const {title} = route.params
   const deck = state[title];
   return {

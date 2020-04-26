@@ -45,11 +45,12 @@ function DecksStackScreen() {
 const Tab = createBottomTabNavigator();
 
 export default function App() {
-  
+
   useEffect(() => {
     setLocalNotification();
      
   }, []);
+
   return (
     <Provider store={store}>
       <AppNavigator />
@@ -58,6 +59,7 @@ export default function App() {
 }
 
 function AppNavigator (){
+ 
   return(
     <NavigationContainer>
       <Tab.Navigator

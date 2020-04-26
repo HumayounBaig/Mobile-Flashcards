@@ -3,10 +3,10 @@ import { View, Text, Alert, SafeAreaView, TouchableOpacity, AsyncStorage } from 
 import { styles, colors } from '../styles/styles';
 import MoveToBottom from '../helpers/MoveToBottom'
 import { connect } from 'react-redux';
-import { removeDeck, deleteDeck } from '../redux/actions'
+import { removeDeck, deleteDeck } from '../redux/actions';
+import { deleteDeckAS } from '../utils/dataHandler'
 
 function DeckDetails({ route, navigation, deleteDeck, deck }) {
-  console.log(deck)
  
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -38,8 +38,9 @@ function DeckDetails({ route, navigation, deleteDeck, deck }) {
     );
   }
 
-  function handleDelete(){
+  async function handleDelete(){
     deleteDeck(deck.title)
+    await deleteDeckAS(deck.title)
     navigation.pop()
   }
 
