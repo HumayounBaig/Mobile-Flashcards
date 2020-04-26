@@ -43,7 +43,7 @@ and utilizes redux to seamlessly pass data throoughout the application.
 |:---------|:-------| 
 | iOS | :white_check_mark: | | 
 | Android | :white_check_mark: | 
-| Android (Simulator) | :white_check_mark: | 
+| iOS (Simulator) | :white_check_mark: | 
 | Android (Simulator) | :white_check_mark: | 
 
 # NOTE
