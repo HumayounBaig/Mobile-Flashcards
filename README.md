@@ -12,6 +12,8 @@ To compile the project:
 
 1. Run `yarn install` 
 2. Then run `expo start` to start the development server at run the project is a device or simulator
+
+> If you get and error on expo start you can install expo by running `npm install expo-cli --global`. Or for further reading about expo visit [expo.io's website](https://expo.io/learn)
  
 # Modules Used
 1. `react-navigation`
