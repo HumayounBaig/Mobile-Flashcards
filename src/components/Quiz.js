@@ -102,7 +102,12 @@ function Quiz({ navigation, deck, title }) {
         <View> 
           
           <View style={{alignItems: 'center'}}>
-            <FontAwesome5 name={ isPassed ? "smile" : "meh"} size={50} color={resultColor} />
+            <FontAwesome5 
+              name={ isPassed ? "smile" : "meh"} 
+              size={50} 
+              color={resultColor} 
+              style={{ marginBottom: 20 }}  
+            />
             <Text style={[styles.heading, {marginBottom: 10}]}>
               Quiz Complete
             </Text>
