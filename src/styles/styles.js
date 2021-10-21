@@ -20,7 +20,8 @@ export const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#dedede",
         margin: 5,
-        borderRadius: 2
+        borderRadius: 10,
+        paddingLeft: 10
     },
     heading: {
         fontSize: 18,

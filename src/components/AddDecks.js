@@ -30,7 +30,7 @@ function AddDecks({navigation, addDeck}) {
     <View style={styles.container}>
       <SafeAreaView>
         <KeyboardAvoidingView keyboardShouldPersistTaps='handled'>
-          <Text style={[styles.heading, { marginBottom: 40 }]}>What is the title of your new deck?</Text>
+          <Text style={[styles.heading, { marginBottom: 20 }]}>What is the title of your new deck?</Text>
 
           <TextInput
             value={value}
@@ -41,7 +41,7 @@ function AddDecks({navigation, addDeck}) {
 
           <TouchableOpacity
             onPress={handleSubmit}
-            style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.green, marginTop: 40 }]}
+            style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.green, marginTop: 20 }]}
             disabled={disabled}
             value ={value}
           >
