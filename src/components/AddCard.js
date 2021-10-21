@@ -32,11 +32,11 @@ function AddCard({navigation, addCardDeck, deck}) {
       <SafeAreaView>
         <KeyboardAvoidingView behavior="padding">
           <View style={{ height: "100%", justifyContent: 'center' }}>
-            <Text style={[styles.heading, { marginBottom: 40 }]}>Please enter following to add new card</Text>
+            <Text style={[styles.heading, { marginBottom: 20 }]}>Please enter following to add new card</Text>
             <TextInput style={styles.input} value={question} placeholder="Enter Question" onChangeText={setQuestion} />
             <TextInput style={styles.input} value={answer} placeholder="Enter Answer" onChangeText={setAnswer}/>
 
-            <TouchableOpacity onPress={handleSubmit} style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.blue, marginTop: 40 }]}>
+            <TouchableOpacity onPress={handleSubmit} style={[styles.button, { backgroundColor: disabled ? colors.disabled : colors.blue, marginTop: 20 }]}>
               <Text style={styles.text}>Submit</Text>
             </TouchableOpacity>
           </View>
