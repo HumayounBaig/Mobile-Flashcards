@@ -40,6 +40,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         alignSelf: 'center', 
         width: 150,
+        marginTop: 10,
+        borderRadius: 20
     },
     deleteButton:{
         position: 'absolute',
@@ -83,7 +85,7 @@ export const styles = StyleSheet.create({
         marginTop: 40
     },
     buttonView: {
-        flexDirection: 'row', 
+        flexDirection: 'column', 
         marginTop: 40, 
     }
     
