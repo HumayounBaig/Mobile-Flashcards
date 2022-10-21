@@ -1,7 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 
 export const colors = {
-    green: '#8bc34a',
+    green: '#c3c3c3',
     blue: '#007aff',
     disabled: '#dedede',
     red: 'red',
@@ -24,12 +24,12 @@ export const styles = StyleSheet.create({
         paddingLeft: 10
     },
     heading: {
-        fontSize: 18,
+        fontSize: 19,
         fontWeight: "bold",
         color: '#444'
     },
     button: { 
-        padding: 10,
+        padding: 11,
         alignItems: 'center',
         alignSelf: 'center', 
         borderRadius: 5,
