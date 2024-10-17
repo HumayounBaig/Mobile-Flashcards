@@ -27,7 +27,8 @@ The project includes _DATA.js component containing data format for a card
 For Details the file is located in `/src/utils/_DATA.js`
 
 ## NOTIFICATIONS
-The app uses daily notifications to remind a users if he/she has not take a quiz that day
+The app uses daily notifications to remind a users if he/she has not take a quiz that day.
+If you miss an day's update the plan is to intimate user via fcm notifications to complete the task of that day
 
 # Views
 The app consists of 5 screens:
@@ -48,6 +49,4 @@ and utilizes redux to seamlessly pass data throoughout the application.
 | iOS (Simulator) | :white_check_mark: | 
 | Android (Simulator) | :white_check_mark: | 
 
-# NOTE
-This is a progressive learning project the UI may be updated later on 🙂
 
